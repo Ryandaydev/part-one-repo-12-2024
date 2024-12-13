@@ -8,8 +8,8 @@ import pandas as pd
  
 def test_health_check(): 
     """Tests health check from SDK"""
-    #config = SWCConfig(url="http://0.0.0.0:8000",backoff=False)
-    config = SWCConfig(backoff=False)
+    config = SWCConfig(swc_base_url="http://0.0.0.0:8000",backoff=False)
+    #config = SWCConfig(backoff=False)
     client = SWCClient(config)    
     response = client.get_health_check()
     assert response.status_code == 200
@@ -17,7 +17,7 @@ def test_health_check():
 
 def test_list_leagues(): 
     """Tests get leagues from SDK"""
-    config = SWCConfig(backoff=False)
+    config = SWCConfig(swc_base_url="http://0.0.0.0:8000",backoff=False)
     client = SWCClient(config)    
     leagues_response = client.list_leagues()
     # Assert the endpoint returned a list object

@@ -1,8 +1,9 @@
+# from book
 import os
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-print(f"Current working directory: {os.getcwd()}")
-load_dotenv(find_dotenv())
+load_dotenv()
+
 
 class SWCConfig:
     """Configuration class containing arguments for the SDK client.
@@ -39,18 +40,15 @@ class SWCConfig:
             If bulk files should be in csv or parquet format.
         """
 
-        print(f"Current working directory: {os.getcwd()}")
-        print(f"Environment before accessing SWC_API_BASE_URL: {os.environ}")
-        print(f"SWC_API_BASE_URL: {os.getenv('SWC_API_BASE_URL')}")
-
-
         self.swc_base_url = swc_base_url or os.getenv("SWC_API_BASE_URL")
-        print(f"SWC_API_BASE_URL in SWCConfig init: {self.swc_base_url}")  
-
+        print(f"SWC_API_BASE_URL in SWCConfig init: {self.swc_base_url}")
 
         if not self.swc_base_url:
-            raise ValueError("Base URL is required. Set SWC_API_BASE_URL environment variable.")
+            raise ValueError(
+                "Base URL is required. Set SWC_API_BASE_URL environment variable."
+            )
 
+        # self.swc_base_url = url
         self.swc_backoff = backoff
         self.swc_backoff_max_time = backoff_max_time
         self.swc_bulk_file_format = bulk_file_format
